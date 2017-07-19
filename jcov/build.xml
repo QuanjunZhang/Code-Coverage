@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--2017/07/17 bu zqj 
+build文件，用来执行jcov 代码覆盖工具
+测试代码：test文件夹
+业务代码（被测试Java代码）：src文件夹
+需要的jar包：lib文件夹-->
+<project name="JCov" default="all" basedir=".">
+<!--包含的target：
+init：创建需要的文件夹
+compile：编译业务代码和测试代码，执行测试字节码
+-->
+<taskdef name="jcovTasks" classname="com.sun.tdk.jcov.ant.AllTasks" classpath="lib/jcov.jar"/>
+<!-- 创建文件夹-->
+<!-- report文件夹：放置报告-->
+<!-- class文件夹，放置业务代码的字节码-->
+<!-- test_class文件夹，放置测试用例的字节码-->
+<!-- instr_classes：被插入instrumentation的class文件（被测试代码的class文件）-->
+    <target name="init">
+        <mkdir dir="report"/>
+        <mkdir dir="classes"/>
+        <mkdir dir="test_classes"/>
+        <mkdir dir="instr_classes"/>
+    </target>
+
+<!-- 进行编译工作：业务代码-->
+<target name="compile" depends="init">
+            <!-- 编译src里面的源文件，这里是业务代码，放在src中-->
+        <javac encoding="iso-8859-1" debug="true" target="1.5" source="1.5"
+               srcdir="src"
+               destdir="classes">
+        </javac>
+<!--生成jar文件:将被测试的Java代码（业务代码）打包成jar，供测试代码调用
+    destfile:jar文件名及位置
+    basedir:被归档的文件目录，这里将classes文件夹中的文件归档成jar
+    manifest属性指定自己的META-INF/MANIFEST.MF文件，而不是由系统生成
+-->
+        <jar destfile="src.jar"
+             basedir="classes"
+             index="false">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+            </manifest>
+        </jar>
+
+        <!-- 编译测试用例
+             classpath:需要的类文件，（test.java编译的时候需要调用业务Java文件）
+    -->
+        <javac encoding="iso-8859-1" debug="true" target="1.5" source="1.5"
+               srcdir="test"
+               destdir="test_classes"
+               classpath="src.jar">
+        </javac>
+        <!--执行测试用例（执行测试用例的class文件）-->
+        <!-- 执行class问价
+              classpath:需要的环境变量，本身class文件路径以及需要其他的class文件
+    -->
+    
+        <java classname="HelloTest" fork="true" failonerror="true">
+            <classpath>
+                <pathelement location="test_classes"/>
+                <pathelement location="src.jar"/>
+            </classpath> 
+        </java>
+       
+    
+    </target>
+
+<target name="run" depends="init,compile">
+  
+        <jcovTasks/>
+        <!-- 插入instrumentation-->
+        <!-- productdir：被插入class文件目录-->
+        <instrument productdir="classes" destdir="instr_classes" outtemplate="template.xml">
+        	<!-- 需要的jar-->
+            <implantTo path="." implantRT="lib/jcov.network.saver.jar"/>
+        </instrument>
+
+        <!--start grabber-->
+        <grabber output="result.xml" template="template.xml"/>
+
+
+        <!--运行测试用例字节码（此时运行，测试用例调用的是被插入instrutation的业务class文件）-->
+        <java classname="HelloTest" fork="true" failonerror="true">
+            <classpath>
+                <pathelement location="lib/jcov.network.saver.jar"/>
+                <pathelement location="test_classes"/>
+                <pathelement location="instr_classes"/>
+            </classpath>
+        </java>
+       
+        <!--stop grabber-->
+        <!-- 生成报告-->
+        <grabber-manager command="kill"/>
+        <report output="report" jcovfile="result.xml"/>
+
+    </target>
+<target name="command">
+   
+    <!--get coverage for test using one jcov command-->
+    <java classname="com.sun.tdk.jcov.JCov" fork="true" failonerror="true">
+        <classpath>
+            <pathelement location="lib/jcov.jar"/>
+        </classpath>
+        <arg line="-pro ${basedir}${file.separator}classes -out coverage -command &quot;${java_home}${file.separator}bin${file.separator}java
+ -cp ${jcov.network.saver.jar}${path.separator}${basedir}${file.separator}classes${path.separator}${basedir}${file.separator}..${file.separator}test_classes TestDemoApp1&quot;"/>
+    </java>
+
+    </target>
+
+<!-- 定义执行过程-->
+<!--Default task-->
+	<target name="all" depends="clean,init,compile,run">
+	</target>
+ <target name="clean">
+    	<!-- 删除之前的数据-->
+    	<delete dir="report"/>
+        <delete dir="classes"/>
+        <delete dir="test_classes"/>
+        <delete dir="instr_classes"/>
+        <delete file="result.xml"/>
+        <delete file="template.xml"/>
+        <delete file="src.jar"/>
+    </target>
+</project>
