@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="MyTask" basedir="." default="use">
+
+<taskdef name="helloworld" classname="HelloWorld" classpath="${ant.project.name}.jar"/>
+<taskdef name="Nested-helloworld" classname="NestedElements" classpath="${ant.project.name}.jar"/>
+    <target name="use" description="Use the Task">
+        <helloworld>
+            <message msg="Hi,This is 1MyTask!!!"/>
+       	    <message msg="Hi,This is 2MyTask!!!"/>
+        </helloworld>
+        <!-- 嵌套-->
+        <Nested-helloworld>
+            <message msg="Nested Element 1"/>
+            <message msg="Nested Element 2"/>
+        </Nested-helloworld>
+    </target>
+
+</project>
