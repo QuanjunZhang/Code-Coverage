@@ -1,3 +1,3 @@
 # Java Code Coverage
 
-[Jacoco Analyse](#Jacoco)
+[Jacoco Analyse](./Jacoco)
