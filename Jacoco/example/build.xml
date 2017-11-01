@@ -10,7 +10,7 @@
    Contributors:
       Marc R. Hoffmann - initial API and implementation
 -->
-
+<!-- offline-->
 <project name="Example Ant Build with JaCoCo Offline Instrumentation" default="rebuild" xmlns:jacoco="antlib:org.jacoco.ant">
 	
 	<description>
@@ -42,6 +42,7 @@
 
 	<target name="instrument" depends="compile">
 		<!-- Step 2: Instrument class files -->
+		<!-- jacoco:instrument见antlib.xml定义-->
 		<jacoco:instrument destdir="${result.classes.instr.dir}">
 			<fileset dir="${result.classes.dir}" />
 		</jacoco:instrument>
@@ -79,9 +80,11 @@
 			<!-- the class files and optional source files ... -->
 			<structure name="JaCoCo Ant Example">
 				<classfiles>
+					<!-- ./target/classes：未插桩前的class文件字节码-->
 					<fileset dir="${result.classes.dir}" />
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
+					<!-- /src：Java源码处-->
 					<fileset dir="${src.dir}" />
 				</sourcefiles>
 			</structure>

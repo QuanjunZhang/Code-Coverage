@@ -1,0 +1,31 @@
+/*******************************************************************************
+ * Copyright (c) 2009, 2017 Mountainminds GmbH & Co. KG and Contributors
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Marc R. Hoffmann - initial API and implementation
+ *    
+ *******************************************************************************/
+package org.jacoco.core.analysis;
+
+import java.util.Collection;
+
+/**
+ * Coverage data of a bundle. A bundle groups a collection of packages.
+ * 一个包coverage data。一个bundle将package集合归类
+ * @see IPackageCoverage
+ */
+public interface IBundleCoverage extends ICoverageNode {
+
+	/**
+	 * Returns all packages contained in this bundle.
+	 * 
+	 * @return all packages
+	 */
+	//返回这个bundle中的所有的package
+	public Collection<IPackageCoverage> getPackages();
+
+}
