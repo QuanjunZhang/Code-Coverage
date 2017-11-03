@@ -509,15 +509,18 @@ public class ReportTask extends Task {
 		//executionDataStore存放了execution data
 		//sessionInfoStore存放了sessionInfo
 		loadExecutionData();
+
 		try {
 			//调用的这个createVisitor函数，不是每一个内部类中的，是该函数下方的
 			//创建了4中格式的visitor
+			//return new IReportVisitor()
 			final IReportVisitor visitor = createVisitor();
 			//访问信息
 			//调用各自格式的visitInfo函数
 			//将sessionInfo和executionData传入过去
 			visitor.visitInfo(sessionInfoStore.getInfos(),
 					executionDataStore.getContents());
+			
             //创建报告（就在该函数下方，不是每一个内部类里面的）
             //structure其实是GroupElement类型，包含了sourcefiles和classfiles
 			createReport(visitor, structure);

@@ -106,6 +106,25 @@ public class HelloTest
 }
 ```
 ## 插入前字节码
+```bash
+E:\git\Code-Coverage\Jacoco\example\target\classes>javap -c HelloTest
+Compiled from "HelloTest.java"
+public class HelloTest {
+  public HelloTest();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: new           #2                  // class Hello
+       3: dup
+       4: invokespecial #3                  // Method Hello."<init>":()V
+       7: astore_1
+       8: return
+}
+```
 
 ```bash
 F:\Jacoco\target\classes>javap -c Hello
@@ -139,6 +158,39 @@ public class Hello {
 ```
 
 ## 插入后字节码
+
+```bash
+Compiled from "HelloTest.java"
+public class HelloTest {
+  public HelloTest();
+    Code:
+       0: invokestatic  #28                 // Method $jacocoInit:()[Z
+       3: astore_1
+       4: aload_0
+       5: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       8: aload_1
+       9: iconst_0
+      10: iconst_1
+      11: bastore
+      12: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: invokestatic  #28                 // Method $jacocoInit:()[Z
+       3: astore_1
+       4: new           #2                  // class Hello
+       7: dup
+       8: invokespecial #3                  // Method Hello."<init>":()V
+      11: astore_2
+      12: aload_1
+      13: iconst_1
+      14: iconst_1
+      15: bastore
+      16: return
+}
+```
+
+
 
 ```bash
 F:\Jacoco\target\classes-instr>javap -c Hello
