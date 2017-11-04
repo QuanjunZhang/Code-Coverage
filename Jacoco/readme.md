@@ -119,7 +119,7 @@ public class HelloTest {
   public static void main(java.lang.String[]);
     Code:
        0: new           #2                  // class Hello
-       3: dup
+       3: dup //dup为了invokespecial存在
        4: invokespecial #3                  // Method Hello."<init>":()V
        7: astore_1
        8: return
