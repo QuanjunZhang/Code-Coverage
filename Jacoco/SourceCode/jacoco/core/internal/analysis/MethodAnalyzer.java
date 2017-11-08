@@ -66,7 +66,7 @@ public class MethodAnalyzer extends MethodProbesVisitor
 	private int lastLine = ISourceNode.UNKNOWN_LINE;
 
 	// Due to ASM issue #315745 there can be more than one label per instruction
-	private final List<Label> currentLabel = new ArrayList<Label>(2);
+	private final List<Label> currentLabel = new ArrayList<Label>(2);//默认2个
 
 	/** List of all analyzed instructions */
 	private final List<Instruction> instructions = new ArrayList<Instruction>();
@@ -77,6 +77,7 @@ public class MethodAnalyzer extends MethodProbesVisitor
 	private final List<Instruction> coveredProbes = new ArrayList<Instruction>();
 
 	/** List of all jumps encountered */
+	//instruction  Label
 	private final List<Jump> jumps = new ArrayList<Jump>();
 
 	/** Last instruction in byte code sequence */
@@ -181,7 +182,7 @@ public class MethodAnalyzer extends MethodProbesVisitor
 		instructions.add(insn);
 		if (lastInsn != null) {
 			insn.setPredecessor(lastInsn);
-		}
+		} 
 		final int labelCount = currentLabel.size();
 		if (labelCount > 0) {
 			for (int i = labelCount; --i >= 0;) {
