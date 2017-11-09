@@ -27,7 +27,7 @@ public class Instruction {
 
 	private int coveredBranches;
 
-	private Instruction predecessor;
+	private Instruction predecessor;//前任只有一个
 
 	/**
 	 * New instruction at the given line.
@@ -79,7 +79,8 @@ public class Instruction {
 	public void setCovered() {
 		Instruction i = this;
 		while (i != null && i.coveredBranches++ == 0) {
-			i = i.predecessor;
+			i = i.predecessor;//进入到这里说明该指令是第一次有覆盖分支，那么我们进入前任指令
+			                  //查看其coveredBranches,即开始递归前任
 		}
 	}
 
