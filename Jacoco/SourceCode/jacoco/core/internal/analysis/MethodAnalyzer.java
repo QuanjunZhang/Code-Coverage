@@ -66,6 +66,7 @@ public class MethodAnalyzer extends MethodProbesVisitor
 	private int lastLine = ISourceNode.UNKNOWN_LINE;
 
 	// Due to ASM issue #315745 there can be more than one label per instruction
+	//一个instruction可能有超过一个label对其指定
 	private final List<Label> currentLabel = new ArrayList<Label>(2);//默认2个
 
 	/** List of all analyzed instructions */
@@ -81,6 +82,7 @@ public class MethodAnalyzer extends MethodProbesVisitor
 	private final List<Jump> jumps = new ArrayList<Jump>();
 
 	/** Last instruction in byte code sequence */
+	//字节码序列的上一个指令
 	private Instruction lastInsn;
 
 	/**
@@ -160,7 +162,9 @@ public class MethodAnalyzer extends MethodProbesVisitor
 	@Override
 	public void visitLabel(final Label label) {
 		currentLabel.add(label);
+		//判断该label是否是之前指令的后任者
 		if (!LabelInfo.isSuccessor(label)) {
+			//如果不是，设置lastInsn为空
 			lastInsn = null;
 		}
 	}

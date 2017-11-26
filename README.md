@@ -6,7 +6,7 @@
 
 ***
 
-- [Introduction](#introduction)
+- [Introduction](#1-introduction)
 - [Tools](#tools)
   - [Jcov](#jcov)
     - [Jcov for Ant](#jcov-for-ant)

@@ -95,7 +95,8 @@ public final class LabelInfo {
 	 * Checks whether this label is the possible successor of the previous
 	 * instruction in the method. This is the case if the predecessor isn't a
 	 * unconditional jump or method exit instruction.
-	 * 
+	 * 判断该label是否是一个指令的后任者
+	 *如果是goto之类的无状态jump和函数exit指令就是true，这里是为了防止不知上述指令的情况
 	 * @param label
 	 *            label to check
 	 * @return <code>true</code> if the label is a possible instruction
@@ -103,6 +104,7 @@ public final class LabelInfo {
 	 */
 	public static boolean isSuccessor(final Label label) {
 		final LabelInfo info = get(label);
+		
 		return info == null ? false : info.successor;
 	}
 
