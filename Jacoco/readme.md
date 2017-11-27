@@ -28,6 +28,8 @@
 - [源码分析](#源码解析)
   - [插桩](#插桩)
   - [生成报告](#生成报告)
+    - [获得覆盖率信息](#获得覆盖率信息)
+    - [报告的生成](报告的生成)
 - [参考](#参考)
 
 
@@ -849,6 +851,30 @@ BASTORE
 ## 生成报告
 
 生成报告在程序入口在`ReportTask`中，传入了executionData，sourcefiles和classfiles。其中executionData是再次运行被插桩的字节码问价获得的探针执行情况，在`report生成`一节有介绍。
+
+关于其获得覆盖下信息后具体的生成报告的步骤，可以通过在jacoco中插入桩点进行运行分析，具体是在ReportTask中进行，其主要是获得bundle（拥有整个项目的覆盖率），之后通过bundle来生成覆盖率信息。
+
+### 获得覆盖率信息
+
+详见[Jacoco覆盖率信息收集1](http://blog.csdn.net/ohcezzz/article/details/78562275)
+
+[Jacoco覆盖率信息收集2](http://blog.csdn.net/ohcezzz/article/details/78561430)
+
+[Jacoco覆盖率信息收集3](http://blog.csdn.net/ohcezzz/article/details/78564430)
+
+[Jacoco覆盖率信息收集4](http://blog.csdn.net/ohcezzz/article/details/78569347)
+
+其对源码分析的最小单位为函数，对于一个函数的分析详见
+
+[MethodAnalyzer分析](http://blog.csdn.net/ohcezzz/article/details/78555128)
+
+### 报告的生成
+
+下面就是在HTMLFormatter中将bundle信息传入sessionPage，BundlePage以及下面的packagePage，ClassPage，PackageSourcePage等。如果想要直接获得其信息而不用html展示则可以如下。
+
+[Jacoco获得各个Counter信息](http://blog.csdn.net/ohcezzz/article/details/78569286)
+
+
 
  # 参考
 

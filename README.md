@@ -7,19 +7,19 @@
 ***
 
 - [Introduction](#1-introduction)
-- [Tools](#tools)
-  - [Jcov](#jcov)
-    - [Jcov for Ant](#jcov-for-ant)
-  - [JaCoCo](#jacoco)
-      - [Jacoco for Eclipse](#jacoco-for-eclipse)
-      - [Jacoco for Ant](#jacoco-for-ant)
-  - [Clover](#clover)
-      - [Clover for Eclipse](#clover-for-eclipse)
-  - [EMMA](#emma)
-      - [EMMA for Ant](#emma-for-ant)​
-  - [Cobertura](#cobertura)
-      - [Ant+JUnit+Cobretura](#ant-junit-cobertura)
-      - [Command Line](#command-line)
+- [Tools](#2-tools)
+  - [Jcov](#2-1-jcov)
+    - [Jcov for Ant](#2-1-1jcov-for-ant)
+  - [JaCoCo](#2-2-jacoco)
+      - [Jacoco for Eclipse](#2-2-1-jacoco-for-eclipse)
+      - [Jacoco for Ant](#2-2-2-jacoco-for-ant)
+  - [Clover](#2-3-clover)
+      - [Clover for Eclipse](#2-3-1clover-for-eclipse)
+  - [EMMA](#2-4-emma)
+      - [EMMA for Ant](2-4-1#emma-for-ant)
+  - [Cobertura](#2-5-cobertura)
+      - [Ant+JUnit+Cobretura](#2-5-1ant-junit-cobertura)
+      - [Command Line](#2-5-2command-line)
 - [Reference](#reference)
   - [Jacoco](#jacoco)
   - [Cobertura](#cobertura)
@@ -396,12 +396,14 @@ c:\bin\cobertura-2.1.1\cobertura-report.bat --format html -datafile=cobertura.se
 - 1
   [CSDN问答，完整的Ant脚本](http://bbs.csdn.net/topics/390638403?page=1)
   [CSDN博客，与上述相似](http://blog.csdn.net/wtfpewfn/article/details/7444863)
-  -2 
+
+
+- 2 
   [IBM](https://www.ibm.com/developerworks/cn/java/j-cobertura/)
   [相似，多了发邮件](http://blog.chinaunix.net/uid-714081-id-2678586.html)
   [网易博客，里面还有两个链接](http://blog.csdn.net/qysh123/article/details/38360509)
-  ​
-  3- 
+
+- 3 
   [命令行](http://blog.csdn.net/zxdfc/article/details/52198202)
 
   [视频](http://www.icoolxue.com/play/701)
