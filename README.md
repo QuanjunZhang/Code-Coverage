@@ -416,7 +416,7 @@ c:\bin\cobertura-2.1.1\cobertura-report.bat --format html -datafile=cobertura.se
 
 [jcov资源下载](http://hg.openjdk.java.net/code-tools/jcov/)
 
-[PPt](https://www.slideshare.net/AlexandreShuraIline/con5387)
+[作者介绍该项目的PPT](https://www.slideshare.net/AlexandreShuraIline/con5387)
 
 [作者介绍该项目视频](https://www.youtube.com/watch?v=OAglQAb2bBY)
 
