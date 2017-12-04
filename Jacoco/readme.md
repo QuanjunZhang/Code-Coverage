@@ -906,6 +906,12 @@ BASTORE
 
 [美团博客，关于Jacoco很深讲的](https://tech.meituan.com/android-jacoco-practace.html)
 
+- 4/12/2017:
+
+考虑mock与jacoco使用
+
+[[Java单元测试(Junit+Mock+代码覆盖率)](http://www.cnblogs.com/AloneSword/p/4109407.html)](http://www.cnblogs.com/AloneSword/p/4109407.html)
+
 
 
 
