@@ -910,9 +910,9 @@ BASTORE
 
 考虑mock与jacoco使用
 
-[[Java单元测试(Junit+Mock+代码覆盖率)](http://www.cnblogs.com/AloneSword/p/4109407.html)](http://www.cnblogs.com/AloneSword/p/4109407.html)
+[Java单元测试(Junit+Mock+代码覆盖率)](http://thihy.iteye.com/blog/1771826)
 
-
+[自定义jacoco](https://groups.google.com/forum/#!topic/jacoco/kRKB59IT6yI)
 
 
 
